@@ -19,7 +19,7 @@ namespace ts.formatting {
 
         public Initialize(rules: Rule[]) {
             this.mapRowLength = SyntaxKind.LastToken + 1;
-            this.map = <any> new Array(this.mapRowLength * this.mapRowLength); // new Array<RulesBucket>(this.mapRowLength * this.mapRowLength);
+            this.map = <any>new Array(this.mapRowLength * this.mapRowLength); // new Array<RulesBucket>(this.mapRowLength * this.mapRowLength);
 
             // This array is used only during construction of the rulesbucket in the map
             const rulesBucketConstructionStateList: RulesBucketConstructionState[] = <any>new Array(this.map.length); // new Array<RulesBucketConstructionState>(this.map.length);
@@ -35,8 +35,8 @@ namespace ts.formatting {
         }
 
         private GetRuleBucketIndex(row: number, column: number): number {
+            Debug.assert(row <= SyntaxKind.LastKeyword && column <= SyntaxKind.LastKeyword, "Must compute formatting context from tokens");
             const rulesBucketIndex = (row * this.mapRowLength) + column;
-            // Debug.Assert(rulesBucketIndex < this.map.Length, "Trying to access an index outside the array.");
             return rulesBucketIndex;
         }
 

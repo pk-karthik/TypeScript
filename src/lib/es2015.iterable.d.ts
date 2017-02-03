@@ -63,6 +63,26 @@ interface ArrayConstructor {
     from<T>(iterable: Iterable<T>): Array<T>;
 }
 
+interface ReadonlyArray<T> {
+    /** Iterator */
+    [Symbol.iterator](): IterableIterator<T>;
+
+    /** 
+      * Returns an array of key, value pairs for every entry in the array
+      */
+    entries(): IterableIterator<[number, T]>;
+
+    /** 
+      * Returns an list of keys in the array
+      */
+    keys(): IterableIterator<number>;
+
+    /** 
+      * Returns an list of values in the array
+      */
+    values(): IterableIterator<T>;
+}
+
 interface IArguments {
     /** Iterator */
     [Symbol.iterator](): IterableIterator<any>;
@@ -79,10 +99,10 @@ interface MapConstructor {
     new <K, V>(iterable: Iterable<[K, V]>): Map<K, V>;
 }
 
-interface WeakMap<K, V> { }
+interface WeakMap<K extends object, V> { }
 
 interface WeakMapConstructor {
-    new <K, V>(iterable: Iterable<[K, V]>): WeakMap<K, V>;
+    new <K extends object, V>(iterable: Iterable<[K, V]>): WeakMap<K, V>;
 }
 
 interface Set<T> {

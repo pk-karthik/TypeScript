@@ -70,8 +70,10 @@
 ////<div>,   {integer}</div>;/*commaInJsxElement2*/
 ////<span>)</span>;/*closingParenInJsxElement*/
 ////<span>)   </span>;/*closingParenInJsxElement2*/
-////<Router routes={                3    } />;/*jsxExpressionSpaces*/
+////<Router        routes      =        { 3 }   /      >;/*jsxExpressionSpaces*/
 ////<Router routes={                (3)    } />;/*jsxExpressionSpaces2*/
+////<Router routes={() => {}}/*jsxExpressionSpaces3*/
+/////>;/*jsxDanglingSelfClosingToken*/
 
 format.document();
 goTo.marker("autoformat");
@@ -85,7 +87,7 @@ goTo.marker("indent1");
 verify.indentationIs(12);
 
 goTo.marker("1");
-verify.currentLineContentIs('            class1= {');
+verify.currentLineContentIs('            class1={');
 goTo.marker("2");
 verify.currentLineContentIs('            }>');
 
@@ -95,7 +97,7 @@ goTo.marker("indent2");
 verify.indentationIs(12);
 
 goTo.marker("3");
-verify.currentLineContentIs('            class2= {');
+verify.currentLineContentIs('            class2={');
 goTo.marker("4");
 verify.currentLineContentIs('            }>');
 
@@ -105,9 +107,9 @@ goTo.marker("indent3");
 verify.indentationIs(12);
 
 goTo.marker("5");
-verify.currentLineContentIs('            class3= {');
+verify.currentLineContentIs('            class3={');
 goTo.marker("6");
-verify.currentLineContentIs('            }/>');
+verify.currentLineContentIs('            } />');
 
 
 goTo.marker("attrAutoformat");
@@ -120,8 +122,7 @@ goTo.marker("expressionIndent");
 verify.indentationIs(12);
 
 goTo.marker("danglingBracketAutoformat")
-// TODO: verify.currentLineContentIs("    >");
-verify.currentLineContentIs("        >");
+verify.currentLineContentIs("    >");
 goTo.marker("closingTagAutoformat");
 verify.currentLineContentIs("    </div>");
 
@@ -146,3 +147,7 @@ goTo.marker("jsxExpressionSpaces");
 verify.currentLineContentIs("<Router routes={3} />;");
 goTo.marker("jsxExpressionSpaces2");
 verify.currentLineContentIs("<Router routes={(3)} />;");
+goTo.marker("jsxExpressionSpaces3");
+verify.currentLineContentIs("<Router routes={() => { }}");
+goTo.marker("jsxDanglingSelfClosingToken");
+verify.currentLineContentIs("/>;");

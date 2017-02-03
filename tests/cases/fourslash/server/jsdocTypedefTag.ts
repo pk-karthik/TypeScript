@@ -32,33 +32,57 @@
 //// var numberLike; numberLike./*numberLike*/
 ////
 //// /** @type {Person} */
-//// var p;p./*person*/
+//// var p;p./*person*/;
+//// p.personName./*personName*/;
+//// p.personAge./*personAge*/;
 ////
 //// /** @type {Animal} */
-//// var a;a./*animal*/
+//// var a;a./*animal*/;
+//// a.animalName./*animalName*/;
+//// a.animalAge./*animalAge*/;
 ////
 //// /** @type {Cat} */
-//// var c;c./*cat*/
+//// var c;c./*cat*/;
+//// c.catName./*catName*/;
+//// c.catAge./*catAge*/;
 ////
 //// /** @type {Dog} */
-//// var d;d./*dog*/
+//// var d;d./*dog*/;
+//// d.dogName./*dogName*/;
+//// d.dogAge./*dogAge*/;
 
 goTo.marker('numberLike');
-verify.memberListContains('charAt');
-verify.memberListContains('toExponential');
+verify.completionListContains('charAt');
+verify.completionListContains('toExponential');
 
 goTo.marker('person');
-verify.memberListContains('personName');
-verify.memberListContains('personAge');
+verify.completionListContains('personName');
+verify.completionListContains('personAge');
+goTo.marker('personName');
+verify.completionListContains('charAt');
+goTo.marker('personAge');
+verify.completionListContains('toExponential');
 
 goTo.marker('animal');
-verify.memberListContains('animalName');
-verify.memberListContains('animalAge');
+verify.completionListContains('animalName');
+verify.completionListContains('animalAge');
+goTo.marker('animalName');
+verify.completionListContains('charAt');
+goTo.marker('animalAge');
+verify.completionListContains('toExponential');
 
 goTo.marker('dog');
-verify.memberListContains('dogName');
-verify.memberListContains('dogAge');
+verify.completionListContains('dogName');
+verify.completionListContains('dogAge');
+goTo.marker('dogName');
+verify.completionListContains('charAt');
+goTo.marker('dogAge');
+verify.completionListContains('toExponential');
 
 goTo.marker('cat');
-verify.memberListContains('catName');
-verify.memberListContains('catAge');
+verify.completionListContains('catName');
+verify.completionListContains('catAge');
+goTo.marker('catName');
+verify.completionListContains('charAt');
+goTo.marker('catAge');
+verify.completionListContains('toExponential');

@@ -14,7 +14,7 @@
 
 // @Filename: foo_user.ts
 ///////<reference path="foo.d.ts" />
-/////*foo_type_declaration*/import foo = require("foo_module");
+////import /*foo_type_declaration*/foo = require("foo_module");
 ////const x = foo/*foo_value*/;
 ////const i: foo/*foo_type*/ = { x: 1, y: 2 };
 
@@ -26,20 +26,18 @@ verify.navigationItemsListContains("foo", "const", "foo", "exact");
 
 goTo.marker("foo_value");
 verify.quickInfoIs("const foo: number");
-goTo.definition();
-verify.caretAtMarker("foo_value_declaration");
+verify.goToDefinitionIs("foo_value_declaration");
 
 goTo.marker("foo_type");
 verify.quickInfoIs("import foo = require(\"foo_module\")");
-goTo.definition();
-verify.caretAtMarker("foo_type_declaration");
+verify.goToDefinitionIs("foo_type_declaration");
 
 
 // Above tested for global const and imported interface. Now test with global interface and imported const.
 
 
 // @Filename: bar.d.ts
-/////*bar_type_declaration*/declare interface bar { x: number; y: number }
+////declare interface /*bar_type_declaration*/bar { x: number; y: number }
 ////declare module "bar_module" {
 ////    const x: number;
 ////    export = x;
@@ -47,7 +45,7 @@ verify.caretAtMarker("foo_type_declaration");
 
 // @Filename: bar_user.ts
 ///////<reference path="bar.d.ts" />
-/////*bar_value_declaration*/import bar = require("bar_module");
+////import /*bar_value_declaration*/bar = require("bar_module");
 ////const x = bar/*bar_value*/;
 ////const i: bar/*bar_type*/ = { x: 1, y: 2 };
 
@@ -58,10 +56,8 @@ verify.navigationItemsListContains("bar", "interface", "bar", "exact");
 
 goTo.marker("bar_value");
 verify.quickInfoIs("import bar = require(\"bar_module\")");
-goTo.definition();
-verify.caretAtMarker("bar_value_declaration");
+verify.goToDefinitionIs("bar_value_declaration");
 
 goTo.marker("bar_type");
 verify.quickInfoIs("interface bar");
-goTo.definition();
-verify.caretAtMarker("bar_type_declaration");
+verify.goToDefinitionIs("bar_type_declaration");
